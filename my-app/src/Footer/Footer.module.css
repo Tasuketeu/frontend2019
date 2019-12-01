@@ -1,0 +1,11 @@
+.footer{
+	background-color: black;
+	min-height:50px;
+	 background-size: cover;
+    background-position: center center;
+	padding-top:14px;
+}
+
+.footerText{
+	color:white;
+}
