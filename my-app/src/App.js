@@ -7,7 +7,7 @@ import store from './redux/redux-store';
 import {compose} from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
 import MovieContainer from './components/MainContainer/MovieContainer/MovieContainer';
-import Footer from './Footer/Footer';
+import Footer from '../src/components/Footer/Footer';
 
 class App extends Component {
 
@@ -15,7 +15,7 @@ class App extends Component {
   return (
     <div className="app-wrapper">
 <HeaderContainer/>
-<MovieContainer/>
+<Route path='/' component={MovieContainer} />
 <Footer/>
     </div>
   );

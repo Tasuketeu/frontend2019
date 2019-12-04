@@ -1,134 +1,121 @@
 import React from 'react';
 import s from './MovieContainer.module.css';
-import {NavLink} from "react-router-dom";
-import MovieTable from '../TableCreator/MovieTable';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import Select from 'react-select';
+import { Container, Row, Col, FormGroup, InputGroup, FormControl, Button, Table } from 'react-bootstrap';
 
-const Movie =(props)=>{
-  return(
-   <div class="content-width">
-   <div class="container">
-     <div class="row">
-       <div class="col-md-8">
-         <div class="btn-group mr-2 btn-sm">
-           <div class="dropdown">
-             <button
-               class="btn btn-secondary dropdown-toggle"
-               type="button"
-               id="dropdownMenuButton"
-               data-toggle="dropdown"
-               aria-haspopup="true"
-               aria-expanded="false"
-             >
-               Format
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item" href="#">Lorem ipsum</a>
-               <a class="dropdown-item" href="#">Lorem ipsum</a>
-             </div>
-           </div>
-         </div>
-         <div class="btn-group mr-2 btn-sm">
-           <div class="dropdown">
-             <button
-               class="btn btn-secondary dropdown-toggle"
-               type="button"
-               id="dropdownMenuButton"
-               data-toggle="dropdown"
-               aria-haspopup="true"
-               aria-expanded="false"
-             >
-               Genre
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item" href="#">Lorem ipsum</a>
-               <a class="dropdown-item" href="#">Lorem ipsum</a>
-             </div>
-           </div>
-         </div>
-         <div class="btn-group mr-2 btn-sm">
-           <div class="dropdown">
-             <button
-               class="btn btn-secondary dropdown-toggle"
-               type="button"
-               id="dropdownMenuButton"
-               data-toggle="dropdown"
-               aria-haspopup="true"
-               aria-expanded="false"
-             >
-               Year
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item" href="#">Lorem ipsum</a>
-               <a class="dropdown-item" href="#">Lorem ipsum</a>
-             </div>
-           </div>
-         </div>
-       </div>
-       <div class="col-md-4">
-         <div class="input-group">
-           <input
-             class="form-control py-2"
-             type="search"
-             value="search"
-             id="example-search-input"
-           />
-           <span class="input-group-append">
-             <button class="btn btn-outline-secondary" type="button">
-             <FontAwesomeIcon icon={faCoffee} />
-             </button>
-           </span>
-         </div>
-       </div>
-     </div>
 
-     <div class="row">
-       <table class="table">
-         <thead>
-           <tr>
-             <th scope="col"></th>
-             <th scope="col">Title</th>
-             <th scope="col">Format</th>
-             <th scope="col">Genre</th>
-             <th scope="col">Year</th>
-             <th scope="col">Rating</th>
-           </tr>
-         </thead>
-         <tbody>
-         
-     <MovieTable rowNumber={rowIncrement.call()} filmName="Alien" filmType="Movie" filmGenre="Horror" filmYear="1979" filmRating="8.5"/>
-     <MovieTable rowNumber={rowIncrement.call()} filmName="Alien" filmType="Movie" filmGenre="Horror" filmYear="1979" filmRating="8.5"/>
-     <MovieTable rowNumber={rowIncrement.call()} filmName="Alien" filmType="Movie" filmGenre="Horror" filmYear="1979" filmRating="8.5"/>
-     <MovieTable rowNumber={rowIncrement.call()} filmName="Alien" filmType="Movie" filmGenre="Horror" filmYear="1979" filmRating="8.5"/>
-     <MovieTable rowNumber={rowIncrement.call()} filmName="Alien" filmType="Movie" filmGenre="Horror" filmYear="1979" filmRating="8.5"/>
-         </tbody>
-       </table>
-     </div>
-     <div class="row justify-content-end">
-       <nav aria-label="Page navigation example">
-         <ul class="pagination">
-           <li class="page-item">
-             <a class="page-link" href="#">Previous</a>
-           </li>
-           <li class="page-item"><a class="page-link" href="#">1</a></li>
-           <li class="page-item"><a class="page-link" href="#">2</a></li>
-           <li class="page-item"><a class="page-link" href="#">3</a></li>
-           <li class="page-item"><a class="page-link" href="#">Next</a></li>
-         </ul>
-       </nav>
-     </div>
-   </div>
- </div>
 
-  );
-}
+export let Movie =(props)=>{
+    return (
+      <div>
+        <Container>
+            {/* Фильтры. */}
+            <Row className="show-grid">
+                <Col xs={3}>
+                    <Select
+                        name="format"
+                        value={props.format}
+                        onChange={props.handleFormatChange}
+                        clearable={false}
+                        options={[
+                            { value: 'movie', label: 'Фильм' },
+                            { value: 'tvseries', label: 'Сериал' },
+                        ]}
+                    />
+                </Col>
+                <Col xs={3}>
+                    <Select
+                        name="genre"
+                        value={props.genre}
+                        onChange={props.handleGenreChange}
+                        clearable={false}
+                        options={[
+                            { value: 12, label: 'Приключения' },
+                            { value: 16, label: 'Мультфильм' },
+                            { value: 35, label: 'Комедия' },
+                            { value: 53, label: 'Триллер' }
+                            // При желании можете добавить и остальные жанры...
+                            // 28	боевик
+                            // 12	приключения
+                            // 16	мультфильм
+                            // 35	комедия
+                            // 80	криминал
+                            // 99	документальный
+                            // 18	драма
+                            // 10751	семейный
+                            // 14	фэнтези
+                            // 36	история
+                            // 27	ужасы
+                            // 10402	музыка
+                            // 9648	детектив
+                            // 10749	мелодрама
+                            // 878	фантастика
+                            // 10770	телевизионный фильм
+                            // 53	триллер
+                            // 10752	военный
+                            // 37	вестерн
+                        ]}
+                    />
+                </Col>
+                <Col xs={3}>
+                    <Select
+                        name="year"
+                        value={props.year}
+                        onChange={props.handleYearChange}
+                        clearable={false}
+                        options={[
+                            { value: '2010', label: '2010' },
+                            { value: '2011', label: '2011' },
+                            { value: '2012', label: '2012' },
+                            { value: '2013', label: '2013' },
+                            { value: '2014', label: '2014' },
+                            { value: '2015', label: '2015' },
+                            { value: '2016', label: '2016' },
+                            { value: '2017', label: '2017' },
+                            { value: '2018', label: '2018' },
+                        ]}
+                    />
+                </Col>
+                <Col xs={3}>
+                    <FormGroup>
+                        <InputGroup>
+                            <FormControl type="text" onChange={props.handleSearchInputChange} />
+                                <Button onClick={props.handleSearchButtonClick}>Search</Button>
+                        </InputGroup>
+                    </FormGroup>
+                </Col>
+            </Row>
 
-var count=0;
-
-let rowIncrement=()=>{
-  ++count;
-  return count;
-}
-
-export default Movie;
+            {/* Таблица. */}
+            <Row>
+                <Col xs={12}>
+                    <Table className="movies" bordered condensed hover>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Название</th>
+                                <th>Формат</th>
+                                <th>Дата релиза</th>
+                                <th>Рейтинг</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                              props.result.map((item, index) => (
+                                    <tr key={index}>
+                                        <td className="poster-cell"><img src={`http://image.tmdb.org/t/p/w92/${item.poster_path}`} /></td>
+                                        <td>{item.title}</td>
+                                        <td>Кино</td>
+                                        <td>{item.release_date}</td>
+                                        <td>{item.vote_average}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </Table>
+                </Col>
+            </Row>
+        </Container>
+        </div>
+    )
+};

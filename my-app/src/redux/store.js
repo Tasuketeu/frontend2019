@@ -1,20 +1,15 @@
-// import profileReducer from "./profile-reducer";
-// import dialogsReducer from "./dialogs-reducer";
-// import sidebarReducer from "./sidebar-reducer";
+import moviesReducer from "./movies-reducer";
+
 
 
 let store={
     _state:{
-        profilePage:{
-            posts:[
-                {id:1,message:"Hi", likesCount:25},
-                {id:2,message:"Hi", likesCount:25},
-                {id:3,message:"Hi", likesCount:25},
-                {id:4,message:"Hi", likesCount:25},
-                {id:5,message:"Hi", likesCount:25},
-                {id:6,message:"Hi", likesCount:25}
-            ],
-            newPostText:""
+        movies:{
+            format: null,               // Начальное состояние для фильтра 'Формат'.
+            genre: null,                // Начальное состояние для фильтра 'Жанр'.
+            year: null,                 // Начальное состояние для фильтра 'Год'.
+            searchInput: null,          // Начальное состояние для фильтра 'Поиск по названию фильму'.
+            result: []                  // Список отображаемых фильмов.
         }
     },
     getState(){
@@ -29,9 +24,7 @@ let store={
     },
     dispatch(action) {
 
-        // this._state.profilePage=profileReducer(this._state.profilePage,action);
-        // this._state.dialogsPage=dialogsReducer(this._state.dialogsPage,action);
-        // this._state.sidebar=sidebarReducer(this._state.sidebar,action);
+        this._state.movies=moviesReducer(this._state.movies,action);
 
         this._rerenderEntireTree(this._state);
 
